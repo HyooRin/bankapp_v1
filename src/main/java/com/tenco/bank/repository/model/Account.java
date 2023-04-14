@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 import lombok.Data;
 /*
- * 모델 클래스 (Value Object 역할만 하는 것은 아니다)
+ * 모델 클래스 
  * 
  * */
 @Data
@@ -28,7 +28,7 @@ public class Account {
 	}
 	
 	// 패스워드 체크 
-	// 잔액 여부 확인 (출금 시)
+	// 잔액 여부 확인 (입/출금 시)
 	// 계좌 소유자 확인 
 
 }
