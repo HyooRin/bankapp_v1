@@ -2,11 +2,12 @@ package com.tenco.bank.repository.interfaces;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.tenco.bank.repository.model.Account;
 
-@Mapper
+@Mapper // Mybatis 연결 처리
 public interface AccountRepository {
 	
 	public int insert(Account account);
