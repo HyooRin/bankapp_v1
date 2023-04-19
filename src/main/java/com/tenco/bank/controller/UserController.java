@@ -14,6 +14,7 @@ import com.tenco.bank.dto.SignUpFormDto;
 import com.tenco.bank.handler.exception.CustomRestfullException;
 import com.tenco.bank.repository.model.User;
 import com.tenco.bank.service.UserService;
+import com.tenco.bank.utils.Define;
 
 @Controller
 @RequestMapping("/user")
@@ -25,7 +26,6 @@ public class UserController {
 	@Autowired // DI 처리
 	private HttpSession session;
 
-	// http://localhost:8080/user/sign-up
 	@GetMapping("/sign-up")
 	public String signUp() {
 		// prefix
@@ -33,10 +33,6 @@ public class UserController {
 		return "/user/signUp";
 
 	}
-
-	// MIME TYPE : x-www-form-urlencoded
-	// form : Query String 방식으로 들어온다
-	// dto : object mapper 처리
 
 	/**
 	 * 회원가입처리
@@ -62,7 +58,7 @@ public class UserController {
 		}
 
 		// 서비스 호출
-		userService.signUp(signUpFormDto);
+		userService.createUser(signUpFormDto);
 
 		return "redirect:/user/sign-in";
 
@@ -102,15 +98,16 @@ public class UserController {
 		// 서비스 호출
 		// 세션: 사용자 정보 저장
 		User principal = userService.signIn(signInFormDto);
-		session.setAttribute("principal", principal);
+		session.setAttribute(Define.PRINCIPAL, principal);
 
 		return "/account/list";
 
 	}
+
 	@GetMapping("/logout")
 	public String logout() {
 		session.invalidate();
-		return "redirect:/user/sign-in";	
+		return "redirect:/user/sign-in";
 	}
 
 }

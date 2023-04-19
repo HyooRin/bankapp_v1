@@ -21,7 +21,7 @@ public class UserService {
 	// 메서드 호출이 시작될때 트랜젝션의 시작
 	// 메서드 종료시 트랜젝션 종료 (commit)
 	
-	public void signUp(SignUpFormDto signUpFormDto) {
+	public void createUser(SignUpFormDto signUpFormDto) {
 		
 		// signUpFormDto
 		// User
