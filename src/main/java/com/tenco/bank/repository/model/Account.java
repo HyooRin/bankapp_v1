@@ -17,7 +17,7 @@ public class Account {
 	private Integer userId;
 	private Timestamp createdAt;
 	
-	public void wuthdraw(Long amount) {
+	public void withdraw(Long amount) {
 		
 		this.balance -= amount;		
 	}

@@ -9,10 +9,10 @@
 		insert into
 		history_tb(
 		amount, w_balance, d_balance,
-		w_account_id, d_account_id)
+		w_account_id, d_account_id, created_at)
 		values(
 		#{amount}, #{wBalance}, #{dBalance},
-		#{wAccountId}, #{dAccountId}
+		#{wAccountId}, #{dAccountId}, now()
 		)
 	</insert>
 
@@ -20,8 +20,7 @@
 		parameterType="com.tenco.bank.repository.model.History">
 		update history_tb
 		set amount = #{amount},
-		w_balance =
-		#{wBalance},
+		w_balance =	#{wBalance},
 		d_balace = #{dBalance},
 	</update>
 
