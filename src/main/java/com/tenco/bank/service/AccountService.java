@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tenco.bank.dto.DepositFormDto;
 import com.tenco.bank.dto.SaveFormDto;
 import com.tenco.bank.dto.WithdrawFormDto;
 import com.tenco.bank.handler.exception.CustomRestfullException;
@@ -23,7 +24,6 @@ public class AccountService {
 	@Autowired
 	private HistoryRepository historyRepository;
 	
-	// 서비스 로직 만들기
 	/**
 	 * 계좌 생성 기능 
 	 * @param saveFormDto
@@ -31,8 +31,7 @@ public class AccountService {
 	 */
 	@Transactional
 	public void createAccount(SaveFormDto saveFormDto, Integer principalId) {
-		// saveFormDto를 변경 또는 신규생성
-		// 1단계 레벨
+
 		Account account = new Account();
 		account.setNumber(saveFormDto.getNumber());
 		account.setPassword(saveFormDto.getNumber());
@@ -110,6 +109,36 @@ public class AccountService {
 		}
 				
 		
+	}
+	
+	// 입금 처리 기능 
+	// 트랜잭션 처리
+	// 1. 계좌 존재 여부 확인 -> select 
+	// 2. 입금처리 -> update 
+	// 3. 거래 내역 등록 처리 -> insert
+	@Transactional
+	public void updateAccountDeposit(DepositFormDto depositFormDto) {
+		
+		Account accountEntity = accountRepository.findByNumber(depositFormDto.getDAccountNumber());
+		if(accountEntity == null) {
+			throw new CustomRestfullException("해당 계좌가 존재하지 않습니다", HttpStatus.INTERNAL_SERVER_ERROR);	
+		}
+		
+		// 객체 상태값 변경 
+		accountEntity.deposit(depositFormDto.getAmount());
+		accountRepository.updateById(accountEntity);
+		
+		History history = new History();
+		history.setAmount(depositFormDto.getAmount());
+		history.setWBalance(null);
+		history.setDBalance(accountEntity.getBalance());
+		history.setWAccountId(null);
+		history.setDAccountId(accountEntity.getId());
+		
+		int resultRowCount = historyRepository.insert(history);
+		if(resultRowCount != 1) {
+			throw new CustomRestfullException("정상처리되지않았습니다", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	 
 

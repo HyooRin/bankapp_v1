@@ -40,7 +40,7 @@ public class UserController {
 	 * @param signUpFormDto
 	 * @return 리다이렉트 로그인 페이지
 	 */
-	@PostMapping("sign-up")
+	@PostMapping("/sign-up")
 	public String signUpProc(SignUpFormDto signUpFormDto) {
 
 		// 1. 유효성 검사
