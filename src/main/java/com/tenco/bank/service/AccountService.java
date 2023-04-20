@@ -209,7 +209,10 @@ public class AccountService {
 	 * @param id (account_id)
 	 * @return 입금, 출금, 입출금 거래내역
 	 */
+<<<<<<< HEAD
 	@Transactional
+=======
+>>>>>>> ba8f27ec96c45d50df1549316ab9b111c282fb8e
 	public List<HistoryDto> readHistoryListByAccount(String type,Integer id){
 		
 		List<HistoryDto> historyDtos = historyRepository.findByIdHistoryType(type, id);
