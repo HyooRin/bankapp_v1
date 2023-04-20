@@ -8,7 +8,7 @@ import com.tenco.bank.handler.exception.CustomRestfullException;
 
 import lombok.Data;
 /*
- * 모델 클래스 
+ * 모델 클래스 (Value Object 역할만 하는것은 아니다) 
  * 
  * */
 @Data

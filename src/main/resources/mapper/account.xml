@@ -18,7 +18,7 @@
 		delete from account_tb where id = #{id}		
 	</delete>
 	
-	<select id="finfById" resultType="com.tenco.bank.repository.model.Account">
+	<select id="findById" resultType="com.tenco.bank.repository.model.Account">
 		select * from account_tb where id = #{id}	
 	</select>
 	

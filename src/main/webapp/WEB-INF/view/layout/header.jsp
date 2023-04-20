@@ -55,7 +55,7 @@
 				<h3>Some Links</h3>
 				<p>Lorem ipsum dolor sit ame.</p>
 				<ul class="nav nav-pills flex-column">
-					<li class="nav-item"><a class="nav-link active" href="/account/save">계좌생성</a></li>
+					<li class="nav-item"><a class="nav-link" href="/account/save">계좌생성</a></li>
 					<li class="nav-item"><a class="nav-link" href="/account/list">계좌목록</a></li>
 					<li class="nav-item"><a class="nav-link" href="/account/withdraw">출금</a></li>
 					<li class="nav-item"><a class="nav-link" href="/account/deposit">입금</a></li>

@@ -11,6 +11,7 @@ import com.tenco.bank.dto.DepositFormDto;
 import com.tenco.bank.dto.SaveFormDto;
 import com.tenco.bank.dto.TransferFormDto;
 import com.tenco.bank.dto.WithdrawFormDto;
+import com.tenco.bank.dto.response.HistoryDto;
 import com.tenco.bank.handler.exception.CustomRestfullException;
 import com.tenco.bank.repository.interfaces.AccountRepository;
 import com.tenco.bank.repository.interfaces.HistoryRepository;
@@ -43,6 +44,15 @@ public class AccountService {
 			throw new CustomRestfullException("계좌 생성 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		}		
 		
+	}
+	// 단일 계좌 검색 기능
+	public Account readAccount(Integer id) {
+		
+		Account accountEntity = accountRepository.findById(id);
+		if(accountEntity == null) {
+			throw new CustomRestfullException("해당계좌를 찾을 수 없습니다", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return accountEntity;		
 	}
 	
 	// 계좌 목록 보기 기능 
@@ -109,6 +119,8 @@ public class AccountService {
 			throw new CustomRestfullException("정상처리되지않았습니다", HttpStatus.INTERNAL_SERVER_ERROR);
 		}		
 	}
+	
+	
 	
 	// 이체 기능 만들기
 	// 트랜잭션 처리 
@@ -177,6 +189,8 @@ public class AccountService {
 		accountEntity.deposit(depositFormDto.getAmount());
 		accountRepository.updateById(accountEntity);
 		
+		
+		
 		History history = new History();
 		history.setAmount(depositFormDto.getAmount());
 		history.setWBalance(null);
@@ -188,6 +202,24 @@ public class AccountService {
 		if(resultRowCount != 1) {
 			throw new CustomRestfullException("정상처리되지않았습니다", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	/**
+	 * 단일 계좌 거래 내역 검색
+	 * @param type = [all, deposit, withdraw] 
+	 * @param id (account_id)
+	 * @return 입금, 출금, 입출금 거래내역
+	 */
+	@Transactional
+	public List<HistoryDto> readHistoryListByAccount(String type,Integer id){
+		
+		List<HistoryDto> historyDtos = historyRepository.findByIdHistoryType(type, id);
+		
+		historyDtos.forEach( e -> {
+			// historyDto <- e
+			System.out.println(e);
+		});
+		
+		return historyDtos;		
 	}
 	 
 
