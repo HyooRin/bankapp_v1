@@ -100,7 +100,7 @@ public class UserController {
 		User principal = userService.signIn(signInFormDto);
 		session.setAttribute(Define.PRINCIPAL, principal);
 
-		return "/account/list";
+		return "redirect:/account/list";
 
 	}
 
