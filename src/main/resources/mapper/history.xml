@@ -19,7 +19,7 @@
 		update history_tb
 		set amount = #{amount},
 		w_balance = #{wBalance},
-		d_balace = #{dBalance},
+		d_balance = #{dBalance},
 	</update>
 
 	<delete id="deleteById" parameterType="int">

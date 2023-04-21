@@ -3,7 +3,7 @@
 
 
 <div class="col-sm-8">
-	<h2>출근페이지(인증)</h2>
+	<h2>출금페이지(인증)</h2>
 	<h5>어서오세요 환영합니다</h5>
 	<div class="bg-light p-md-5 h-75">
 		<form action="/account/withdraw-proc" method="post">
