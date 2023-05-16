@@ -22,8 +22,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		
 		registry.addInterceptor(authInterceptor)
-				.addPathPatterns("/account/**")
-				.addPathPatterns("/auth/**"); // 1. path 더 추가하는 방법
+				.addPathPatterns("/account/**");
+				//.addPathPatterns("/auth/**"); // 1. path 더 추가하는 방법
 		
 		// 인터셉터 등록
 		//registry.addInterceptor(new AdminInterceptor()) // 2. 인터셉터 등록

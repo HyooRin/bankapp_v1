@@ -42,3 +42,6 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
     
+tenco:
+  key: cd943dc6fed752ac6e14b8e4ada29f3be7fa4755533057f64cdd7d80c871fb211ff5474be5cb70d4bbba0b7d6bb57617e7a6d01232a5f029111778240114fcef
+    
